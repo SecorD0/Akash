@@ -1,0 +1,6 @@
+akash
+us-west
+us-east
+equinix-metal-ewr1
+equinix-metal-sjc1
+equinix-metal-ams1

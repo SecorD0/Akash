@@ -193,17 +193,17 @@ fi
 # Insert the missing variables
 if [ ! -n "$akash_wallet_name" ]; then
 	printf_n "$t_err2"
-	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) -n akash_wallet_name
+	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n akash_wallet_name
 fi
 if [ ! -n "$akash_wallet_address" ]; then
 	printf_n "$t_err3"
-	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) -n akash_wallet_address -v `akash keys show "$akash_wallet_name" -a --keyring-backend file`
+	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n akash_wallet_address -v `akash keys show "$akash_wallet_name" -a --keyring-backend file`
 fi
 if [ ! -n "$akash_chain_id" ]; then
-	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) -n akash_chain_id -v "\`wget -qO- https://raw.githubusercontent.com/ovrclk/net/master/mainnet/chain-id.txt\`"
+	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n akash_chain_id -v "\`wget -qO- https://raw.githubusercontent.com/ovrclk/net/master/mainnet/chain-id.txt\`"
 fi
 if [ ! -n "$akash_project_node" ]; then
-	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) -n akash_project_node -v "\`wget -qO- https://raw.githubusercontent.com/ovrclk/net/master/mainnet/rpc-nodes.txt | head -2\`"
+	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n akash_project_node -v "\`wget -qO- https://raw.githubusercontent.com/ovrclk/net/master/mainnet/rpc-nodes.txt | head -2\`"
 fi
 # Actions
 sudo apt install bc -y &>/dev/null

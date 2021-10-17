@@ -308,7 +308,7 @@ elif [ "$action" = "deployments_create" ]; then
 	--node "$akash_project_node" \
 	--keyring-backend file`
 	if grep -q "deployment-created" <<< $resp; then
-		printf_n "$t_dc1" `jq -r '.logs[0].events[0].attributes[4].value'`
+		printf_n "$t_dc1" `jq -r '.logs[0].events[0].attributes[4].value' <<< $resp`
 	else
 		printf_n "$t_unsuc_with_err" "$resp"
 		return 1 2>/dev/null; exit 1

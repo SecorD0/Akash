@@ -1,11 +1,12 @@
 #!/bin/bash
 # Default variables
-avg_block_time="6.207"
 language="EN"
+insert_variables="false"
 action=""
 all="false"
 config_file="$HOME/.akash/deploy.yaml"
 dseq=""
+avg_block_time="6.207"
 # Options
 . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/colors.sh) --
 option_value(){ echo "$1" | sed -e 's%^--[^=]*=%%g; s%^-[^=]*=%%g'; }
@@ -21,6 +22,7 @@ while test $# -gt 0; do
 		echo -e "${C_LGn}Options${RES}:"
 		echo -e "  -h,  --help               show help page"
 		echo -e "  -l,  --language LANGUAGE  use the LANGUAGE for texts"
+		echo -e "  -iv                       insert useful variables"
 		echo -e "                            LANGUAGE is '${C_LGn}EN${RES}' (default), '${C_LGn}RU${RES}'"
 		echo -e "  -a,  --action ACTION      execute the ACTION"
 		echo -e "       --all                show inactive deployments in '${C_LGn}deployments_list${RES}' action"
@@ -52,6 +54,10 @@ while test $# -gt 0; do
 	-l*|--language*)
 		if ! grep -q "=" <<< "$1"; then shift; fi
 		language=`option_value "$1"`
+		shift
+		;;
+	-iv)
+		insert_variables="true"
 		shift
 		;;
 	-a*|--action*)
@@ -131,7 +137,7 @@ if [ "$language" = "RU" ]; then
 	t_err1="${C_LR}Вы не указали действие с помощью опции${RES} -a ${C_LR}!${RES}"
 	t_err2="${C_LR}В сестеме нет переменной с названием кошелька!${RES}"
 	t_err3="${C_LR}В сестеме нет переменной с адресом кошелька!${RES}"
-	t_err4="${C_LR}Нет такого действия!${RES} Используйте опцию${RES} -h ${C_LR} для просмотра страницы помощи"
+	t_err4="${C_LR}Нет такого действия! Используйте опцию${RES} -h ${C_LR}для просмотра страницы помощи${RES}"
 # Send Pull request with new texts to add a language - https://github.com/SecorD0/Massa/blob/main/cli_client.sh
 #elif [ "$language" = ".." ]; then
 else
@@ -183,7 +189,13 @@ else
 	t_err1="${C_LR}You didn't specify DSEQ via${RES} -a ${C_LR}option!${RES}"
 	t_err2="${C_LR}There is no variable with the wallet name!${RES}"
 	t_err3="${C_LR}There is no variable with the wallet address!${RES}"
-	t_err4="${C_LR}There is no such action!${RES} Use${RES} -h ${C_LR}option to view the help page"	
+	t_err4="${C_LR}There is no such action! Use${RES} -h ${C_LR}option to view the help page ${RES}"	
+fi
+# Insert variables
+if [ "$insert_variables" = "true" ]; then
+
+	printf_n "$t_done"
+	return 0 2>/dev/null; exit 0
 fi
 # Mandatory variables
 if [ ! -n "$action" ]; then

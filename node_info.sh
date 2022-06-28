@@ -71,13 +71,13 @@ if [ ! -n "$keyring_backend" ]; then
 	keyring_backend=`$daemon config keyring-backend 2>/dev/null`
 fi
 if [ "$network" == "mainnet" ]; then
-	global_rpc=""
-	explorer_url_template=""
-	current_block=`echo`
-else
 	global_rpc="https://api-akash.cosmostation.io/v1/status"
 	explorer_url_template="https://www.mintscan.io/akash/validators/"
 	current_block=`wget -qO- "$global_rpc" | jq -r ".block_height"`
+else
+	global_rpc=""
+	explorer_url_template=""
+	current_block=`echo`
 fi
 
 # Functions

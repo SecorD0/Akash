@@ -40,7 +40,7 @@ while test $# -gt 0; do
 		echo -e "https://github.com/SecorD0/Akash/blob/main/config_builder.sh - script URL"
 		echo -e "https://github.com/ovrclk/docs/blob/master/sdl/README.md - official configuration documentation"
 		echo -e "https://github.com/SecorD0/Akash/blob/main/hosts.txt - list of hosts"
-		echo -e "https://t.me/letskynode — node Community"
+		echo -e "https://t.me/OnePackage — noderun and tech community"
 		echo
 		return 0 2>/dev/null; exit 0
 		;;
